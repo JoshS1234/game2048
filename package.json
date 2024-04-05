@@ -1,0 +1,17 @@
+{
+  "name": "game2048",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1",
+    "jest": "^29.7.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0"
+  }
+}
