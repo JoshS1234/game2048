@@ -1,24 +1,55 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+const gameBoardHTML = document.querySelectorAll(".numSquare");
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+const gameBoard = [
+  ["", "", "", ""],
+  ["", "2", "", ""],
+  ["", "", "3", ""],
+  ["", "", "", ""],
+];
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+const displayBoard = (gameBoard: any) => {
+  for (let index: number = 0; index < 16; index++) {
+    let i = Math.floor(index / 4);
+    let j = index % 4;
+
+    gameBoardHTML[index].innerHTML = `<h1>${gameBoard[i][j]}</h1>`;
+  }
+};
+displayBoard(gameBoard);
+
+const slideSquaresLeft = (gameBoardSection: any, direction: string) => {
+  if (direction == "left") {
+    let newArr = [];
+    let emptyCounter = 0;
+
+    gameBoardSection.forEach((element: string) => {
+      if (element) {
+        newArr.push(element);
+      } else {
+        emptyCounter++;
+      }
+    });
+    for (let i: number = 0; i < emptyCounter; i++) {
+      newArr.push("");
+    }
+
+    return emptyCounter;
+  }
+};
+
+console.log(slideSquaresLeft(["", "2", "", "2"], "left"));
+console.log(slideSquaresLeft(["", "", "", ""], "left"));
+console.log(slideSquaresLeft(["2", "2", "2", "2"], "left"));
+
+const slideAllSquaresLeft = (gameBoard: any, direction: string) => {
+  const originalBoard = gameBoard.map((arr: any) => {
+    return [...arr];
+  });
+
+  console.log(`original board is: ${originalBoard}`);
+
+  console.log(`direction is ${direction}`);
+
+  console.log(`final board is: ${finalBoard}`);
+};
+// slideAllSquares(gameBoard, "right");

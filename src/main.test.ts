@@ -1,0 +1,1 @@
+import { slideSquaresLeft } from "./main";
