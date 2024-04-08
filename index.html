@@ -30,22 +30,31 @@
       <div class="scoreBoard">
         <h1 class="scoreBoard__title">Score:</h1>
         <h1 class="scoreBoard__scoreBox">Mock score</h1>
+        <input
+          class="scoreBoard__restart-button"
+          value="restart"
+          type="button"
+        />
       </div>
       <div class="controller">
-        <input type="button" class="controller__direction-button" value="Up" />
         <input
           type="button"
-          class="controller__direction-button"
+          class="controller__direction-button controller__direction-button--up"
+          value="Up"
+        />
+        <input
+          type="button"
+          class="controller__direction-button controller__direction-button--left"
           value="Left"
         />
         <input
           type="button"
-          class="controller__direction-button"
+          class="controller__direction-button controller__direction-button--right"
           value="Right"
         />
         <input
           type="button"
-          class="controller__direction-button"
+          class="controller__direction-button controller__direction-button--down"
           value="Down"
         />
       </div>
