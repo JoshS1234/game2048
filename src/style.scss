@@ -45,11 +45,26 @@
 
     .scoreBoard__title {
       width: 20%;
+      font-size: 3vh;
     }
 
     .scoreBoard__scoreBox {
-      width: 60%;
-      background-color: blue;
+      width: 40%;
+      background-color: white;
+      font-size: 6vw;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+
+    .scoreBoard__restart-button {
+      width: 20%;
+      padding: 5px;
+      background-color: white;
+      font-size: 4vw;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
     }
   }
   .controller {
