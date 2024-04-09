@@ -1,4 +1,4 @@
-import confetti, { Options } from "canvas-confetti";
+import confetti from "canvas-confetti";
 ///////////////////HTML inputs////////////////////////////
 
 console.log(document.body.children[0].className == "game");
@@ -349,6 +349,11 @@ const handleUpdateScore = (gameBoard: any[]) => {
 };
 
 const handleLose = () => {
+  gameBoardContainerHTML = document.querySelector(".gameBoard");
+  if (!gameBoardContainerHTML) {
+    throw new Error("gameboard container error");
+  }
+
   gameBoardContainerHTML.innerHTML = `<image src="./images/gameover.gif" class="gameBoard__loseImage">`;
   const score = calculateScore(gameBoard);
   scoreBox.textContent = `Final score: ${score}`;
