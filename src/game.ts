@@ -1,4 +1,5 @@
 ///////////////////HTML inputs////////////////////////////
+console.log(document.body.children[0].className == "game");
 
 const gameBoardHTML = document.querySelectorAll(".numSquare");
 const scoreBox = document.querySelector(".scoreBoard__scoreBox");
@@ -315,7 +316,12 @@ const displayBoard = (gameBoard: any) => {
 
 const handleUpdateScore = (gameBoard: any[]) => {
   const score = calculateScore(gameBoard);
-  scoreBox.textContent = score;
+  scoreBox.textContent = `Score: ${score}`;
+};
+
+const handleLose = () => {
+  const score = calculateScore(gameBoard);
+  scoreBox.textContent = `Final score: ${score}`;
 };
 
 const handleLeftClick = () => {
@@ -324,7 +330,6 @@ const handleLeftClick = () => {
     addNewRandomSquare(gameBoard);
   } else {
     if (!isBoardFull(gameBoard)) {
-      addNewRandomSquare(gameBoard);
     }
   }
   displayBoard(gameBoard);
@@ -332,16 +337,16 @@ const handleLeftClick = () => {
 
   if (checkLose(gameBoard)) {
     alert("You lose!");
+    handleLose();
   }
 };
 
 const handleRightClick = () => {
   if (canMoveDirection(gameBoard, "right")) {
     gameBoard = slideAndCrunchAllSquaresRight(gameBoard);
-    addNewRandomSquare(gameBoard);
+    // addNewRandomSquare(gameBoard);
   } else {
     if (!isBoardFull(gameBoard)) {
-      addNewRandomSquare(gameBoard);
     }
   }
   displayBoard(gameBoard);
@@ -349,6 +354,7 @@ const handleRightClick = () => {
 
   if (checkLose(gameBoard)) {
     alert("You lose!");
+    handleLose();
   }
 };
 
@@ -358,7 +364,6 @@ const handleUpClick = () => {
     addNewRandomSquare(gameBoard);
   } else {
     if (!isBoardFull(gameBoard)) {
-      addNewRandomSquare(gameBoard);
     }
   }
   displayBoard(gameBoard);
@@ -366,6 +371,7 @@ const handleUpClick = () => {
 
   if (checkLose(gameBoard)) {
     alert("You lose!");
+    handleLose();
   }
 };
 
@@ -383,6 +389,7 @@ const handleDownClick = () => {
 
   if (checkLose(gameBoard)) {
     alert("You lose!");
+    handleLose();
   }
 };
 const handleRestart = () => {

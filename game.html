@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./2048_logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/style.css" />
+    <title>2048</title>
+  </head>
+  <body>
+    <div class="game">
+      <a href="/"><input type="button" value="Main menu" /></a>
+      <div class="gameBoard">
+        <div class="numSquare numSquare--1" value="" id="1"></div>
+        <div class="numSquare numSquare--2" value="" id="2"></div>
+        <div class="numSquare numSquare--3" value="" id="3"></div>
+        <div class="numSquare numSquare--4" value="" id="4"></div>
+        <div class="numSquare numSquare--5" value="" id="5"></div>
+        <div class="numSquare numSquare--6" value="" id="6"></div>
+        <div class="numSquare numSquare--7" value="" id="7"></div>
+        <div class="numSquare numSquare--8" value="" id="8"></div>
+        <div class="numSquare numSquare--9" value="" id="9"></div>
+        <div class="numSquare numSquare--10" value="" id="10"></div>
+        <div class="numSquare numSquare--11" value="" id="11"></div>
+        <div class="numSquare numSquare--12" value="" id="12"></div>
+        <div class="numSquare numSquare--13" value="" id="13"></div>
+        <div class="numSquare numSquare--14" value="" id="14"></div>
+        <div class="numSquare numSquare--15" value="" id="15"></div>
+        <div class="numSquare numSquare--16" value="" id="16"></div>
+      </div>
+      <div class="scoreBoard">
+        <h1 class="scoreBoard__scoreBox"></h1>
+        <input
+          class="scoreBoard__restart-button"
+          value="restart"
+          type="button"
+        />
+      </div>
+      <div class="controller">
+        <input
+          type="button"
+          class="controller__direction-button controller__direction-button--up"
+          value="Up"
+        />
+        <input
+          type="button"
+          class="controller__direction-button controller__direction-button--left"
+          value="Left"
+        />
+        <input
+          type="button"
+          class="controller__direction-button controller__direction-button--right"
+          value="Right"
+        />
+        <input
+          type="button"
+          class="controller__direction-button controller__direction-button--down"
+          value="Down"
+        />
+      </div>
+    </div>
+    <script type="module" src="/src/game.ts"></script>
+  </body>
+</html>
