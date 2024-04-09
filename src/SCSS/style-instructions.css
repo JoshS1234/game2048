@@ -14,17 +14,18 @@
   justify-content: space-around;
 }
 .instructions nav {
-  width: 50%;
+  width: 100%;
   padding: 20px;
   height: 10vh;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-self: flex-start;
 }
 .instructions nav a input {
-  padding: 10px;
   width: 100%;
+  padding: 10px;
+  justify-content: center;
 }
 .instructions .instructions-container {
   width: 100%;
