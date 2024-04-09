@@ -424,6 +424,11 @@ const handleDownClick = () => {
   }
 };
 const handleRestart = () => {
+  gameBoardContainerHTML = document.querySelector(".gameBoard");
+  if (!gameBoardContainerHTML) {
+    throw new Error("gameboard container error");
+  }
+
   gameBoardContainerHTML.innerHTML = `<div class="numSquare" value="" id="1"></div>
   <div class="numSquare" value="" id="2"></div>
   <div class="numSquare" value="" id="3"></div>
@@ -454,18 +459,6 @@ const handleRestart = () => {
   hasWon = false;
   winMove = true;
 };
-
-// const startGame = () => {
-//   const gameBoard = [
-//     ["", "", "", ""],
-//     ["", "", "", ""],
-//     ["", "", "", ""],
-//     ["", "", "", ""],
-//   ];
-//   addNewRandomSquare(gameBoard);
-//   addNewRandomSquare(gameBoard);
-//   return gameBoard;
-// };
 
 leftButton.addEventListener("click", handleLeftClick);
 rightButton.addEventListener("click", handleRightClick);
