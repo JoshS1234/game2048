@@ -6,7 +6,9 @@ console.log(document.body.children[0].className == "game");
 let gameBoardContainerHTML = document.querySelector(".gameBoard");
 let gameBoardHTML = document.querySelectorAll(".numSquare");
 const scoreBox = document.querySelector(".scoreBoard__scoreBox");
-const restartButton = document.querySelector(".scoreBoard__restart-button");
+const restartButton = document.querySelector(
+  ".scoreBoard__restart-button"
+) as HTMLInputElement;
 
 const leftButton = document.querySelector(
   ".controller__direction-button--left"
@@ -253,18 +255,18 @@ const addNewRandomSquare = (gameBoard: any[]) => {
 };
 
 const startGame = () => {
-  const gameBoard = [
-    ["", "", "", ""],
-    ["", "", "", ""],
-    ["", "", "", ""],
-    ["", "", "", ""],
-  ];
   // const gameBoard = [
-  //   ["1024", "1024", "32", ""],
-  //   ["2", "4", "2", "8"],
-  //   ["512", "256", "32", "4"],
-  //   ["8", "2", "512", ""],
+  //   ["", "", "", ""],
+  //   ["", "", "", ""],
+  //   ["", "", "", ""],
+  //   ["", "", "", ""],
   // ];
+  const gameBoard = [
+    ["1024", "1024", "32", ""],
+    ["2", "4", "2", "8"],
+    ["512", "256", "32", "4"],
+    ["8", "2", "512", ""],
+  ];
   addNewRandomSquare(gameBoard);
   addNewRandomSquare(gameBoard);
   return gameBoard;
@@ -352,14 +354,9 @@ const handleUpdateScore = (gameBoard: any[]) => {
 };
 
 const handleLose = () => {
-  gameBoardContainerHTML = document.querySelector(".gameBoard");
-  if (!gameBoardContainerHTML) {
-    throw new Error("gameboard container error");
-  }
-
-  gameBoardContainerHTML.innerHTML = `<image src="./images/gameover.gif" class="gameBoard__loseImage">`;
   const score = calculateScore(gameBoard);
-  scoreBox.textContent = `Final score: ${score}`;
+  scoreBox.textContent = `Game over: ${score}`;
+  restartButton.value = "Play again?";
 };
 
 const handleLeftClick = () => {
@@ -426,38 +423,10 @@ const handleDownClick = () => {
   }
 };
 const handleRestart = () => {
-  gameBoardContainerHTML = document.querySelector(".gameBoard");
-  if (!gameBoardContainerHTML) {
-    throw new Error("gameboard container error");
-  }
-
-  gameBoardContainerHTML.innerHTML = `<div class="numSquare" value="" id="1"></div>
-  <div class="numSquare" value="" id="2"></div>
-  <div class="numSquare" value="" id="3"></div>
-  <div class="numSquare" value="" id="4"></div>
-  <div class="numSquare" value="" id="5"></div>
-  <div class="numSquare" value="" id="6"></div>
-  <div class="numSquare" value="" id="7"></div>
-  <div class="numSquare" value="" id="8"></div>
-  <div class="numSquare" value="" id="9"></div>
-  <div class="numSquare" value="" id="10"></div>
-  <div class="numSquare" value="" id="11"></div>
-  <div class="numSquare" value="" id="12"></div>
-  <div class="numSquare" value="" id="13"></div>
-  <div class="numSquare" value="" id="14"></div>
-  <div class="numSquare" value="" id="15"></div>
-  <div class="numSquare" value="" id="16"></div>`;
-  gameBoardContainerHTML = document.querySelector(".gameBoard");
-  gameBoardHTML = document.querySelectorAll(".numSquare");
-
-  if (!gameBoardContainerHTML) {
-    throw new Error("gameboard container issue");
-  } else if (!gameBoardHTML) {
-    throw new Error("gameboard container issue");
-  }
   gameBoard = startGame();
   displayBoard(gameBoard);
   handleUpdateScore(gameBoard);
+  restartButton.value = "Restart";
   hasWon = false;
   winMove = true;
 };
