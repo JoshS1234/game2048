@@ -1,7 +1,10 @@
+import confetti, { Options } from "canvas-confetti";
 ///////////////////HTML inputs////////////////////////////
+
 console.log(document.body.children[0].className == "game");
 
-const gameBoardHTML = document.querySelectorAll(".numSquare");
+let gameBoardContainerHTML = document.querySelector(".gameBoard");
+let gameBoardHTML = document.querySelectorAll(".numSquare");
 const scoreBox = document.querySelector(".scoreBoard__scoreBox");
 const restartButton = document.querySelector(".scoreBoard__restart-button");
 
@@ -18,6 +21,8 @@ const downButton = document.querySelector(
 
 if (!gameBoardHTML) {
   throw new Error("gameboard issue");
+} else if (!gameBoardContainerHTML) {
+  throw new Error("gameboard container issue");
 } else if (!scoreBox) {
   throw new Error("scoreBox issue");
 } else if (!leftButton) {
@@ -218,6 +223,9 @@ const calculateScore = (gameBoard: any[]) => {
   for (let i: number = 0; i < gameBoard.length; i++) {
     for (let j: number = 0; j < gameBoard[i].length; j++) {
       if (gameBoard[i][j] != "") {
+        if (parseFloat(gameBoard[i][j]) >= 2048) {
+          hasWon = true;
+        }
         total += parseFloat(gameBoard[i][j]);
       }
     }
@@ -251,6 +259,12 @@ const startGame = () => {
     ["", "", "", ""],
     ["", "", "", ""],
   ];
+  // const gameBoard = [
+  //   ["1024", "1024", "32", ""],
+  //   ["2", "4", "2", "8"],
+  //   ["512", "256", "32", "4"],
+  //   ["8", "2", "512", ""],
+  // ];
   addNewRandomSquare(gameBoard);
   addNewRandomSquare(gameBoard);
   return gameBoard;
@@ -311,15 +325,31 @@ const displayBoard = (gameBoard: any) => {
     let j = index % 4;
 
     gameBoardHTML[index].innerHTML = `<h1>${gameBoard[i][j]}</h1>`;
+    if (gameBoard[i][j] != "") {
+      gameBoardHTML[
+        index
+      ].className = `numSquare numSquare--${gameBoard[i][j]}`;
+    } else {
+      gameBoardHTML[index].className = `numSquare`;
+    }
   }
 };
 
 const handleUpdateScore = (gameBoard: any[]) => {
   const score = calculateScore(gameBoard);
-  scoreBox.textContent = `Score: ${score}`;
+  if (hasWon) {
+    scoreBox.textContent = `You win: ${score}`;
+    if (winMove) {
+      confetti();
+      winMove = false;
+    }
+  } else {
+    scoreBox.textContent = `Score: ${score}`;
+  }
 };
 
 const handleLose = () => {
+  gameBoardContainerHTML.innerHTML = `<image src="./images/gameover.gif" class="gameBoard__loseImage">`;
   const score = calculateScore(gameBoard);
   scoreBox.textContent = `Final score: ${score}`;
 };
@@ -336,7 +366,6 @@ const handleLeftClick = () => {
   handleUpdateScore(gameBoard);
 
   if (checkLose(gameBoard)) {
-    alert("You lose!");
     handleLose();
   }
 };
@@ -344,7 +373,7 @@ const handleLeftClick = () => {
 const handleRightClick = () => {
   if (canMoveDirection(gameBoard, "right")) {
     gameBoard = slideAndCrunchAllSquaresRight(gameBoard);
-    // addNewRandomSquare(gameBoard);
+    addNewRandomSquare(gameBoard);
   } else {
     if (!isBoardFull(gameBoard)) {
     }
@@ -353,7 +382,6 @@ const handleRightClick = () => {
   handleUpdateScore(gameBoard);
 
   if (checkLose(gameBoard)) {
-    alert("You lose!");
     handleLose();
   }
 };
@@ -370,7 +398,6 @@ const handleUpClick = () => {
   handleUpdateScore(gameBoard);
 
   if (checkLose(gameBoard)) {
-    alert("You lose!");
     handleLose();
   }
 };
@@ -388,15 +415,52 @@ const handleDownClick = () => {
   handleUpdateScore(gameBoard);
 
   if (checkLose(gameBoard)) {
-    alert("You lose!");
     handleLose();
   }
 };
 const handleRestart = () => {
+  gameBoardContainerHTML.innerHTML = `<div class="numSquare" value="" id="1"></div>
+  <div class="numSquare" value="" id="2"></div>
+  <div class="numSquare" value="" id="3"></div>
+  <div class="numSquare" value="" id="4"></div>
+  <div class="numSquare" value="" id="5"></div>
+  <div class="numSquare" value="" id="6"></div>
+  <div class="numSquare" value="" id="7"></div>
+  <div class="numSquare" value="" id="8"></div>
+  <div class="numSquare" value="" id="9"></div>
+  <div class="numSquare" value="" id="10"></div>
+  <div class="numSquare" value="" id="11"></div>
+  <div class="numSquare" value="" id="12"></div>
+  <div class="numSquare" value="" id="13"></div>
+  <div class="numSquare" value="" id="14"></div>
+  <div class="numSquare" value="" id="15"></div>
+  <div class="numSquare" value="" id="16"></div>`;
+  gameBoardContainerHTML = document.querySelector(".gameBoard");
+  gameBoardHTML = document.querySelectorAll(".numSquare");
+
+  if (!gameBoardContainerHTML) {
+    throw new Error("gameboard container issue");
+  } else if (!gameBoardHTML) {
+    throw new Error("gameboard container issue");
+  }
   gameBoard = startGame();
   displayBoard(gameBoard);
   handleUpdateScore(gameBoard);
+  hasWon = false;
+  winMove = true;
 };
+
+// const startGame = () => {
+//   const gameBoard = [
+//     ["", "", "", ""],
+//     ["", "", "", ""],
+//     ["", "", "", ""],
+//     ["", "", "", ""],
+//   ];
+//   addNewRandomSquare(gameBoard);
+//   addNewRandomSquare(gameBoard);
+//   return gameBoard;
+// };
 
 leftButton.addEventListener("click", handleLeftClick);
 rightButton.addEventListener("click", handleRightClick);
@@ -410,6 +474,8 @@ restartButton?.addEventListener("click", handleRestart);
 
 //start game
 let gameBoard = startGame();
+let hasWon = false;
+let winMove = true;
 
 displayBoard(gameBoard);
 handleUpdateScore(gameBoard);
