@@ -273,6 +273,9 @@ const startGame = () => {
 const canMoveDirection = (gameBoard: any[], direction: string) => {
   if (direction == "left") {
     const afterLeftMove = slideAndCrunchAllSquaresLeft(gameBoard);
+    console.log(afterLeftMove);
+    console.log(gameBoard);
+    console.log(!(JSON.stringify(afterLeftMove) == JSON.stringify(gameBoard)));
     return !(JSON.stringify(afterLeftMove) == JSON.stringify(gameBoard));
   } else if (direction == "right") {
     const afterRightMove = slideAndCrunchAllSquaresRight(gameBoard);
@@ -413,7 +416,6 @@ const handleDownClick = () => {
     addNewRandomSquare(gameBoard);
   } else {
     if (!isBoardFull(gameBoard)) {
-      addNewRandomSquare(gameBoard);
     }
   }
   displayBoard(gameBoard);
