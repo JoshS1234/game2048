@@ -4,6 +4,8 @@ import confetti from "canvas-confetti";
 let gameBoardContainerHTML = document.querySelector(".gameBoard");
 let gameBoardHTML = document.querySelectorAll(".numSquare");
 const scoreBox = document.querySelector(".scoreBoard__scoreBox");
+const loseScreen = document.querySelector(".lose-screen");
+
 const restartButton = document.querySelector(
   ".scoreBoard__restart-button"
 ) as HTMLInputElement;
@@ -33,6 +35,8 @@ if (!gameBoardHTML) {
   throw new Error("left button issue");
 } else if (!downButton) {
   throw new Error("left button issue");
+} else if (!loseScreen) {
+  throw new Error("loseScreen issue");
 }
 
 ////////////////////////GAME LOGIC///////////////////////////////////
@@ -267,6 +271,8 @@ const startGame = () => {
   // ];
   addNewRandomSquare(gameBoard);
   addNewRandomSquare(gameBoard);
+  gameBoardContainerHTML.classList.add("gameBoard--active");
+  loseScreen.classList.remove("lose-screen--active");
   return gameBoard;
 };
 
@@ -352,6 +358,8 @@ const handleLose = () => {
   const score = calculateScore(gameBoard);
   scoreBox.textContent = `Game over: ${score}`;
   restartButton.value = "Play again?";
+  gameBoardContainerHTML.classList.remove("gameBoard--active");
+  loseScreen.classList.add("lose-screen--active");
 };
 
 const handleLeftClick = () => {
@@ -419,11 +427,11 @@ const handleDownClick = () => {
 };
 const handleRestart = () => {
   gameBoard = startGame();
-  displayBoard(gameBoard);
-  handleUpdateScore(gameBoard);
   restartButton.value = "Restart";
   hasWon = false;
   winMove = true;
+  displayBoard(gameBoard);
+  handleUpdateScore(gameBoard);
 };
 
 // allow arrow keys
