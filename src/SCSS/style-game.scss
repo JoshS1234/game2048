@@ -32,6 +32,10 @@ body {
       background-color: $game-nav-button;
       color: rgb(0, 0, 0);
       height: 70%;
+
+      &:hover {
+        background-color: darken($game-nav-button, 10%);
+      }
     }
   }
 
@@ -146,6 +150,10 @@ body {
       background-color: $game-nav-button;
       border-radius: 10px;
       font-size: min(2.5vh, 5vw);
+
+      &:hover {
+        background-color: darken($game-nav-button, 10%);
+      }
     }
   }
   .controller {
