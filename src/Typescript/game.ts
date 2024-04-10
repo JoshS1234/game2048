@@ -428,13 +428,13 @@ const handleRestart = () => {
 
 // allow arrow keys
 const checkKey = (e: KeyboardEvent) => {
-  if (e.code == "ArrowLeft") {
+  if (e.code == "ArrowLeft" || e.code == "KeyA") {
     handleLeftClick();
-  } else if (e.code == "ArrowUp") {
+  } else if (e.code == "ArrowUp" || e.code == "KeyW") {
     handleUpClick();
-  } else if (e.code == "ArrowRight") {
+  } else if (e.code == "ArrowRight" || e.code == "KeyD") {
     handleRightClick();
-  } else if (e.code == "ArrowDown") {
+  } else if (e.code == "ArrowDown" || e.code == "KeyS") {
     handleDownClick();
   }
 };
