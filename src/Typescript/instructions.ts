@@ -1,3 +1,5 @@
+import "../SCSS/style-instructions.scss";
+
 const instructionTiles = document.querySelectorAll(
   ".instructions__instruction-card"
 );
@@ -19,23 +21,23 @@ if (!instructionTiles) {
 let activeTile = 0;
 
 const handleGoBack = () => {
-  //   if (activeTile % 6 != 0) {
-  activeTile--;
+  if (activeTile % 6 != 0) {
+    activeTile--;
 
-  instructionTiles[(activeTile % 6) + 1].classList.add(
-    "instructions__instruction-card--inactive"
-  );
-  instructionTiles[(activeTile % 6) + 1].classList.remove(
-    "instructions__instruction-card--active"
-  );
+    instructionTiles[(activeTile % 6) + 1].classList.add(
+      "instructions__instruction-card--inactive"
+    );
+    instructionTiles[(activeTile % 6) + 1].classList.remove(
+      "instructions__instruction-card--active"
+    );
 
-  instructionTiles[activeTile % 6].classList.add(
-    "instructions__instruction-card--active"
-  );
-  instructionTiles[activeTile % 6].classList.remove(
-    "instructions__instruction-card--inactive"
-  );
-  //   }
+    instructionTiles[activeTile % 6].classList.add(
+      "instructions__instruction-card--active"
+    );
+    instructionTiles[activeTile % 6].classList.remove(
+      "instructions__instruction-card--inactive"
+    );
+  }
 };
 const handleGoForward = () => {
   activeTile++;

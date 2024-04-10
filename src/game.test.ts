@@ -8,7 +8,7 @@ import {
   slideAndCrunchAllSquaresRight,
   slideAndCrunchAllSquaresUp,
   slideAndCrunchAllSquaresDown,
-} from "./game";
+} from "./Typescript/game";
 
 describe("slideSquaresLeft", () => {
   it("should return an array of strings, that has length 4", () => {

@@ -1,8 +1,6 @@
+import "../SCSS/style-game.scss";
 import confetti from "canvas-confetti";
 ///////////////////HTML inputs////////////////////////////
-
-console.log(document.body.children[0].className == "game");
-
 let gameBoardContainerHTML = document.querySelector(".gameBoard");
 let gameBoardHTML = document.querySelectorAll(".numSquare");
 const scoreBox = document.querySelector(".scoreBoard__scoreBox");
@@ -275,9 +273,6 @@ const startGame = () => {
 const canMoveDirection = (gameBoard: any[], direction: string) => {
   if (direction == "left") {
     const afterLeftMove = slideAndCrunchAllSquaresLeft(gameBoard);
-    console.log(afterLeftMove);
-    console.log(gameBoard);
-    console.log(!(JSON.stringify(afterLeftMove) == JSON.stringify(gameBoard)));
     return !(JSON.stringify(afterLeftMove) == JSON.stringify(gameBoard));
   } else if (direction == "right") {
     const afterRightMove = slideAndCrunchAllSquaresRight(gameBoard);
@@ -431,11 +426,25 @@ const handleRestart = () => {
   winMove = true;
 };
 
+// allow arrow keys
+const checkKey = (e: KeyboardEvent) => {
+  if (e.code == "ArrowLeft") {
+    handleLeftClick();
+  } else if (e.code == "ArrowUp") {
+    handleUpClick();
+  } else if (e.code == "ArrowRight") {
+    handleRightClick();
+  } else if (e.code == "ArrowDown") {
+    handleDownClick();
+  }
+};
+
 leftButton.addEventListener("click", handleLeftClick);
 rightButton.addEventListener("click", handleRightClick);
 upButton.addEventListener("click", handleUpClick);
 downButton.addEventListener("click", handleDownClick);
 restartButton?.addEventListener("click", handleRestart);
+window.addEventListener("keydown", checkKey);
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
