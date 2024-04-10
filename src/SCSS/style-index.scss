@@ -1,0 +1,47 @@
+@use "./variables.scss" as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: $main-game-background;
+}
+
+.main-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 80vh;
+  width: 100%;
+
+  h1 {
+    font-size: 10vh;
+  }
+
+  a {
+    width: 70%;
+    padding: 0px auto;
+
+    input {
+      width: 100%;
+      padding: 20px;
+      font-size: 5vh;
+      border-radius: 10px;
+      background-color: $game-nav-button;
+
+      &:hover {
+        background-color: darken($game-nav-button, 10%);
+      }
+    }
+  }
+}
