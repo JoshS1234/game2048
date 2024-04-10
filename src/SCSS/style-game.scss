@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+body {
+  height: 100vh;
+}
+
 .game {
   height: 100vh;
   width: 100%;
@@ -16,35 +20,34 @@
   justify-content: flex-start;
 
   nav {
-    align-self: flex-start;
     height: 10vh;
-  }
-  .nav__button {
-    padding: 10px;
-    margin-left: 30px;
-    margin-top: 10px;
-    border-radius: 10px;
-    font-size: 16px;
-    background-color: $game-nav-button;
-    color: rgb(0, 0, 0);
+    padding-left: 30px;
+    width: 100%;
+    padding-top: 10px;
+
+    .nav__button {
+      padding: 10px;
+      border-radius: 10px;
+      font-size: min(2.5vh, 5vw);
+      background-color: $game-nav-button;
+      color: rgb(0, 0, 0);
+      height: 70%;
+    }
   }
 
   .gameBoard {
-    height: 35vh;
-    width: 35vh;
+    height: 40vh;
+    width: 40vh;
     background-color: $main-game-background;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
+    display: none;
     border: 3px solid $gameBoard-border;
 
-    .gameBoard__loseImage {
-      height: 100%;
-      max-height: 100%;
-      max-width: 100%;
-      width: 100%;
+    &--active {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
     }
 
     .numSquare {
@@ -56,7 +59,7 @@
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+      font-size: 1.8vh;
 
       &--4 {
         background-color: darken(antiquewhite, 8%);
@@ -96,6 +99,24 @@
       }
     }
   }
+
+  .lose-screen {
+    height: 40vh;
+    width: 40vh;
+    display: none;
+
+    &--active {
+      display: flex;
+    }
+
+    img {
+      height: 100%;
+      max-height: 100%;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
   .scoreBoard {
     height: 10vh;
     width: 80%;
@@ -109,13 +130,14 @@
       width: 60%;
       height: min(50px, 7vh);
       background-color: $scorebox-background;
-      font-size: 6vw;
+      font-size: min(4vh, 6vw);
       display: flex;
       flex-direction: row;
       justify-content: space-around;
       align-items: center;
       border-radius: 10px;
-      color: black;
+      color: white;
+      background-color: $game-scorebox-background;
     }
 
     .scoreBoard__restart-button {
@@ -123,32 +145,47 @@
       padding: 10px;
       background-color: $game-nav-button;
       border-radius: 10px;
-      font-size: 16px;
+      font-size: min(2.5vh, 5vw);
     }
   }
   .controller {
-    height: 30vh;
-    width: 30vh;
+    height: 35vh;
+    width: 100%;
     background-color: $main-game-background;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    transform: rotate(45deg);
-    margin-top: 5vh;
 
-    .controller__direction-button {
-      height: 40%;
-      width: 40%;
-      background-color: $direction-button-color;
-      border-radius: 50%;
-      transform: rotate(-45deg);
-      font-size: 20px;
-      color: white;
+    .controller__controller-part {
+      height: 33%;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
 
-      &:hover {
-        background-color: lighten($direction-button-color, 10%);
+      &--top {
+        margin-bottom: -20px;
+      }
+
+      &--bottom {
+        margin-top: -20px;
+        // margin-bottom: 20px;
+      }
+
+      .controller__direction-button {
+        height: calc(35vh / 3);
+        width: calc(35vh / 3);
+        background-color: $direction-button-color;
+        border-radius: 50%;
+        font-size: 3.5vh;
+        color: white;
+        margin: 0px 7vw;
+
+        &:hover {
+          background-color: lighten($direction-button-color, 10%);
+        }
       }
     }
   }
