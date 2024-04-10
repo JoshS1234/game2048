@@ -12,14 +12,16 @@
         <a href="./index.html"><input type="button" value="Main menu" /></a>
         <a href="./game.html"><input type="button" value="Play!" /></a>
       </nav>
-      <h1>How to play</h1>
+      <h1 class="instructions-page__title">How to play</h1>
       <div class="instructions-container">
         <div
           id="instruction-card--0"
           class="instructions__instruction-card instructions__instruction-card--active"
         >
-          <h2 class="instruction-card__header">Step 1</h2>
-          <p>There are some numbers on the board</p>
+          <div class="instruction-card__text-container">
+            <h2 class="instruction-card__header">Step 1</h2>
+            <p>There are some numbers on the board</p>
+          </div>
           <img
             class="instruction-card__image"
             src="./images/Instructions1.png"
@@ -29,9 +31,12 @@
           id="instruction-card--1"
           class="instructions__instruction-card instructions__instruction-card--inactive"
         >
-          <h2 class="instruction-card__header">Step 2</h2>
-
-          <p>Press any direction (Up, down, left, right) to move all tiles.</p>
+          <div class="instruction-card__text-container">
+            <h2 class="instruction-card__header">Step 2</h2>
+            <p>
+              Press any direction (Up, down, left, right) to move all tiles.
+            </p>
+          </div>
           <img
             class="instruction-card__image"
             src="./images/Instructions2.png"
@@ -41,9 +46,12 @@
           id="instruction-card--2"
           class="instructions__instruction-card instructions__instruction-card--inactive"
         >
-          <h2 class="instruction-card__header">Step 3</h2>
-
-          <p>A new tile of 2 or 4 will appear on the board after every move</p>
+          <div class="instruction-card__text-container">
+            <h2 class="instruction-card__header">Step 3</h2>
+            <p>
+              A new tile of 2 or 4 will appear on the board after every move
+            </p>
+          </div>
           <img
             class="instruction-card__image"
             src="./images/Instructions3.png"
@@ -53,9 +61,13 @@
           id="instruction-card--3"
           class="instructions__instruction-card instructions__instruction-card--inactive"
         >
-          <h2 class="instruction-card__header">Step 4</h2>
+          <div class="instruction-card__text-container">
+            <h2 class="instruction-card__header">Step 4</h2>
 
-          <p>When two tiles with the same number touch, they merge into one!</p>
+            <p>
+              When two tiles with the same number touch, they merge into one!
+            </p>
+          </div>
           <img
             class="instruction-card__image"
             src="./images/Instructions4.png"
@@ -65,9 +77,11 @@
           id="instruction-card--4"
           class="instructions__instruction-card instructions__instruction-card--inactive"
         >
-          <h2 class="instruction-card__header">Step 5</h2>
+          <div class="instruction-card__text-container">
+            <h2 class="instruction-card__header">Step 5</h2>
 
-          <p>When the board is filled up, you lose.</p>
+            <p>When the board is filled up, you lose.</p>
+          </div>
           <img
             class="instruction-card__image"
             src="./images/Instructions5.png"
@@ -77,9 +91,11 @@
           id="instruction-card--5"
           class="instructions__instruction-card instructions__instruction-card--inactive"
         >
-          <h2 class="instruction-card__header">Step 6</h2>
+          <div class="instruction-card__text-container">
+            <h2 class="instruction-card__header">Step 6</h2>
 
-          <p>When a 2048 tile is created, you win!</p>
+            <p>When a 2048 tile is created, you win!</p>
+          </div>
           <img
             class="instruction-card__image"
             src="./images/Instructions6.gif"
