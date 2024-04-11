@@ -1,5 +1,5 @@
 import "../SCSS/style-game.scss";
-import confetti, { Options } from "canvas-confetti";
+import confetti from "canvas-confetti";
 ///////////////////HTML document elements////////////////////////////
 let gameBoardContainerHTML = document.querySelector(".gameBoard");
 let gameBoardHTML = document.querySelectorAll(".numSquare");
