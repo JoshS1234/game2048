@@ -8,22 +8,33 @@
 
 body {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+
+  .party-music {
+    display: none;
+  }
 }
 
 .game {
   height: 100vh;
   width: 100%;
-  background-color: $main-game-background;
+  background-color: $main-background;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
 
-  nav {
+  .nav {
     height: 10vh;
-    padding-left: 30px;
     width: 100%;
     padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 
     .nav__button {
       padding: 10px;
@@ -34,9 +45,18 @@ body {
       height: 70%;
       color: $button-font;
 
+      &--party {
+        display: none;
+      }
+
       &:hover {
         background-color: darken($game-nav-button, 10%);
       }
+    }
+
+    .nav__instructions {
+      font-size: 2.2vh;
+      color: black;
     }
   }
 
@@ -125,7 +145,7 @@ body {
   .scoreBoard {
     height: 10vh;
     width: 80%;
-    background-color: $main-game-background;
+    background-color: $main-background;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -141,7 +161,7 @@ body {
       justify-content: space-around;
       align-items: center;
       border-radius: 10px;
-      color: $game-scorebox-font;
+      color: $main-font-color;
     }
 
     .scoreBoard__restart-button {
@@ -196,6 +216,86 @@ body {
           background-color: lighten($direction-button-color, 10%);
         }
       }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    background-color: $main-background;
+    .party-music {
+    }
+  }
+
+  .game {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-size: cover;
+
+    &--party {
+      background-image: url("../../images/backgroundGameGif.gif");
+      filter: sepia(50%);
+    }
+
+    .nav {
+      background-color: $main-background;
+      color: white;
+
+      &--party {
+        background-color: black;
+      }
+
+      .nav__button {
+        &--party {
+          display: flex;
+        }
+      }
+
+      .nav__instructions {
+        &--party {
+          color: white;
+        }
+      }
+    }
+
+    .gameBoard {
+      height: 80vh;
+      width: 80vh;
+      background-color: transparent;
+      border: 0px;
+    }
+    .lose-screen {
+      height: 80vh;
+      width: 80vh;
+
+      img {
+        height: 100%;
+        max-height: 100%;
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+
+    .scoreBoard {
+      background-color: $main-background;
+      width: 100%;
+
+      &--party {
+        background-color: black;
+      }
+
+      .scoreBoard__scoreBox {
+        width: 50%;
+      }
+
+      .scoreBoard__restart-button {
+        width: 30%;
+      }
+    }
+
+    .controller {
+      display: none;
     }
   }
 }

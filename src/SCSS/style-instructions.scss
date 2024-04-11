@@ -9,7 +9,7 @@
 .instructions {
   height: 100vh;
   width: 100%;
-  background-color: $main-game-background;
+  background-color: $main-background;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,6 +31,7 @@
         font-size: 3vh;
         border-radius: 5px;
         background-color: $game-nav-button;
+        color: $main-font-color;
 
         &:hover {
           background-color: darken($game-nav-button, 10%);
@@ -51,18 +52,18 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background-color: $main-game-background;
+    background-color: $main-background;
 
     .instructions__instruction-card {
       width: 100%;
       height: 100%;
-      padding: 20px 0px 20px 0px;
+      padding: 0px 0px 0px 0px;
       background-color: white;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      background-color: $main-game-background;
+      background-color: $main-background;
 
       .instruction-card__text-container {
         height: 20%;
@@ -80,8 +81,8 @@
       }
 
       .instruction-card__image {
-        width: max(270px, 75%);
-        height: max(320px, 75%);
+        width: max(30vw, 42vh);
+        height: max(30vw, 42vh);
       }
 
       &--active {
@@ -107,9 +108,23 @@
       border-radius: 5px;
 
       background-color: $game-nav-button;
+      color: $main-font-color;
 
       &:hover {
         background-color: darken($game-nav-button, 10%);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .instructions {
+    .instructions-container {
+      .instructions__instruction-card {
+        .instruction-card__image {
+          width: max(30vw, 50vh);
+          height: max(30vw, 50vh);
+        }
       }
     }
   }

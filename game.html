@@ -8,10 +8,19 @@
   </head>
   <body>
     <div class="game">
-      <nav>
+      <nav class="nav">
         <a href="./index.html"
           ><input type="button" class="nav__button" value="Main menu"
         /></a>
+        <input
+          type="button"
+          class="nav__button nav__button--party"
+          value="Party mode"
+        />
+        <div class="nav__instructions">
+          <p>Use arrow keys/WASD to move</p>
+          <p>Press score to change colour theme</p>
+        </div>
       </nav>
       <div class="gameBoard gameBoard--active">
         <div class="numSquare" value="" id="1"></div>
@@ -75,6 +84,12 @@
         </div>
       </div>
     </div>
+    <audio loop controls class="party-music party-music--active">
+      <source
+        src="https://upload.wikimedia.org/wikipedia/commons/1/10/No-Copyright-Music_-Modern-Technology-_Background-Trance-Music_-by-MokkaMusic-Robot.ogg"
+        type="audio/ogg"
+      />
+    </audio>
     <script type="module" src="/src/Typescript/game.ts"></script>
   </body>
 </html>

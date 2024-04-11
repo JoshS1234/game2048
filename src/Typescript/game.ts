@@ -20,6 +20,12 @@ const upButton = document.querySelector(".controller__direction-button--up");
 const downButton = document.querySelector(
   ".controller__direction-button--down"
 );
+const scoreBoard = document.querySelector(".scoreBoard");
+const body = document.querySelector("body") as HTMLBodyElement;
+const partyButton = document.querySelector(
+  ".nav__button--party"
+) as HTMLBodyElement;
+const partyMusic = document.querySelector(".party-music") as HTMLAudioElement;
 
 if (!gameBoardHTML) {
   throw new Error("gameboard issue");
@@ -37,6 +43,14 @@ if (!gameBoardHTML) {
   throw new Error("left button issue");
 } else if (!loseScreen) {
   throw new Error("loseScreen issue");
+} else if (!scoreBoard) {
+  throw new Error("scoreboard issue");
+} else if (!body) {
+  throw new Error("body issue");
+} else if (!partyButton) {
+  throw new Error("party issue");
+} else if (!partyMusic) {
+  throw new Error("party music issue");
 }
 
 ////////////////////////GAME LOGIC///////////////////////////////////
@@ -257,18 +271,18 @@ const addNewRandomSquare = (gameBoard: any[]) => {
 };
 
 const startGame = () => {
-  // const gameBoard = [
-  //   ["", "", "", ""],
-  //   ["", "", "", ""],
-  //   ["", "", "", ""],
-  //   ["", "", "", ""],
-  // ];
   const gameBoard = [
-    ["1024", "1024", "32", ""],
-    ["2", "4", "2", "8"],
-    ["512", "256", "32", "4"],
-    ["8", "2", "512", ""],
+    ["", "", "", ""],
+    ["", "", "", ""],
+    ["", "", "", ""],
+    ["", "", "", ""],
   ];
+  // const gameBoard = [
+  //   ["1024", "1024", "32", ""],
+  //   ["2", "4", "2", "8"],
+  //   ["512", "256", "32", "4"],
+  //   ["8", "2", "512", ""],
+  // ];
   addNewRandomSquare(gameBoard);
   addNewRandomSquare(gameBoard);
   gameBoardContainerHTML.classList.add("gameBoard--active");
@@ -433,6 +447,11 @@ const handleRestart = () => {
   displayBoard(gameBoard);
   handleUpdateScore(gameBoard);
 };
+let currColor = 0;
+const handleChangeColour = () => {
+  body.style.filter = `hue-rotate(${(currColor + 45) % 360}deg)`;
+  currColor += 45;
+};
 
 // allow arrow keys
 const checkKey = (e: KeyboardEvent) => {
@@ -447,12 +466,39 @@ const checkKey = (e: KeyboardEvent) => {
   }
 };
 
+let isParty: boolean = false;
+const handleParty = () => {
+  if (!isParty) {
+    document.querySelector(".game")?.classList.add("game--party");
+    document.querySelector(".nav")?.classList.add("nav--party");
+    document
+      .querySelector(".nav__instructions")
+      ?.classList.add("nav__instructions--party");
+    document.querySelector(".scoreBoard")?.classList.add("scoreBoard--party");
+    partyMusic.play();
+    isParty = true;
+  } else {
+    document.querySelector(".game")?.classList.remove("game--party");
+    document.querySelector(".nav")?.classList.remove("nav--party");
+    document
+      .querySelector(".nav__instructions")
+      ?.classList.remove("nav__instructions--party");
+    document
+      .querySelector(".scoreBoard")
+      ?.classList.remove("scoreBoard--party");
+    partyMusic.pause();
+    isParty = false;
+  }
+};
+
 leftButton.addEventListener("click", handleLeftClick);
 rightButton.addEventListener("click", handleRightClick);
 upButton.addEventListener("click", handleUpClick);
 downButton.addEventListener("click", handleDownClick);
 restartButton?.addEventListener("click", handleRestart);
 window.addEventListener("keydown", checkKey);
+scoreBoard?.addEventListener("click", handleChangeColour);
+partyButton.addEventListener("click", handleParty);
 
 ///////////////////////////////////////////////////////////////////////////////////////
 

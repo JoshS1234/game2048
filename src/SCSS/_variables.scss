@@ -1,16 +1,16 @@
 //background colors
-$main-game-background: rgb(240, 201, 245);
+$main-background: rgb(240, 201, 245);
 $game-scorebox-background: rgb(163, 140, 194);
-$gameBoard-background: darken($main-game-background, 0%);
-$gameBoard-border: darken($main-game-background, 0%);
-$direction-container-background: $main-game-background;
+$gameBoard-background: darken($main-background, 0%);
+$gameBoard-border: darken($main-background, 0%);
+$direction-container-background: $main-background;
 
 //button colors
 $direction-button-color: rgb(126, 93, 131);
 $game-nav-button: $direction-button-color;
 
 //font colors
-$game-scorebox-font: white;
+$main-font-color: white;
 $button-font: rgb(255, 255, 255);
 
 $numSquare-background: antiquewhite;

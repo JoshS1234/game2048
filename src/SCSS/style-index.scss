@@ -13,7 +13,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  background-color: $main-game-background;
+  background-color: $main-background;
 }
 
 .main-menu {
@@ -26,6 +26,7 @@ body {
 
   h1 {
     font-size: 10vh;
+    color: black;
   }
 
   a {
@@ -38,6 +39,7 @@ body {
       font-size: 5vh;
       border-radius: 10px;
       background-color: $game-nav-button;
+      color: $main-font-color;
 
       &:hover {
         background-color: darken($game-nav-button, 10%);
