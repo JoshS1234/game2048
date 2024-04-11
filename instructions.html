@@ -2,12 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./assets/2048_logo-Bb4Qu8NK.svg" />
+    <link rel="icon" type="image/svg+xml" href="./2048_logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2048</title>
-    <script type="module" crossorigin src="./assets/instructions-DxviMUGa.js"></script>
+    <script type="module" crossorigin src="./assets/instructions-BkmCKdsB.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-B5Qt9EMX.js">
-    <link rel="stylesheet" crossorigin href="./assets/instructions-CvvMEBS8.css">
+    <link rel="stylesheet" crossorigin href="./assets/instructions-DwZut5Y4.css">
   </head>
   <body>
     <div class="instructions">
@@ -15,14 +15,16 @@
         <a href="./index.html"><input type="button" value="Main menu" /></a>
         <a href="./game.html"><input type="button" value="Play!" /></a>
       </nav>
-      <h1>How to play</h1>
+      <h1 class="instructions-page__title">How to play</h1>
       <div class="instructions-container">
         <div
           id="instruction-card--0"
           class="instructions__instruction-card instructions__instruction-card--active"
         >
-          <h2 class="instruction-card__header">Step 1</h2>
-          <p>There are some numbers on the board</p>
+          <div class="instruction-card__text-container">
+            <h2 class="instruction-card__header">Step 1</h2>
+            <p>There are some numbers on the board</p>
+          </div>
           <img
             class="instruction-card__image"
             src="data:image/png;base64,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"
@@ -32,9 +34,12 @@
           id="instruction-card--1"
           class="instructions__instruction-card instructions__instruction-card--inactive"
         >
-          <h2 class="instruction-card__header">Step 2</h2>
-
-          <p>Press any direction (Up, down, left, right) to move all tiles.</p>
+          <div class="instruction-card__text-container">
+            <h2 class="instruction-card__header">Step 2</h2>
+            <p>
+              Press any direction (Up, down, left, right) to move all tiles.
+            </p>
+          </div>
           <img
             class="instruction-card__image"
             src="./assets/Instructions2-B-Ew170j.png"
@@ -44,9 +49,12 @@
           id="instruction-card--2"
           class="instructions__instruction-card instructions__instruction-card--inactive"
         >
-          <h2 class="instruction-card__header">Step 3</h2>
-
-          <p>A new tile of 2 or 4 will appear on the board after every move</p>
+          <div class="instruction-card__text-container">
+            <h2 class="instruction-card__header">Step 3</h2>
+            <p>
+              A new tile of 2 or 4 will appear on the board after every move
+            </p>
+          </div>
           <img
             class="instruction-card__image"
             src="./assets/Instructions3-rwUdUo7L.png"
@@ -56,9 +64,13 @@
           id="instruction-card--3"
           class="instructions__instruction-card instructions__instruction-card--inactive"
         >
-          <h2 class="instruction-card__header">Step 4</h2>
+          <div class="instruction-card__text-container">
+            <h2 class="instruction-card__header">Step 4</h2>
 
-          <p>When two tiles with the same number touch, they merge into one!</p>
+            <p>
+              When two tiles with the same number touch, they merge into one!
+            </p>
+          </div>
           <img
             class="instruction-card__image"
             src="./assets/Instructions4-BlGai0Gg.png"
@@ -68,9 +80,11 @@
           id="instruction-card--4"
           class="instructions__instruction-card instructions__instruction-card--inactive"
         >
-          <h2 class="instruction-card__header">Step 5</h2>
+          <div class="instruction-card__text-container">
+            <h2 class="instruction-card__header">Step 5</h2>
 
-          <p>When the board is filled up, you lose.</p>
+            <p>When the board is filled up, you lose.</p>
+          </div>
           <img
             class="instruction-card__image"
             src="./assets/Instructions5-1CpbmClG.png"
@@ -80,9 +94,11 @@
           id="instruction-card--5"
           class="instructions__instruction-card instructions__instruction-card--inactive"
         >
-          <h2 class="instruction-card__header">Step 6</h2>
+          <div class="instruction-card__text-container">
+            <h2 class="instruction-card__header">Step 6</h2>
 
-          <p>When a 2048 tile is created, you win!</p>
+            <p>When a 2048 tile is created, you win!</p>
+          </div>
           <img
             class="instruction-card__image"
             src="./assets/Instructions6-DbyVm-xQ.gif"

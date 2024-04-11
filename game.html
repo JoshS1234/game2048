@@ -5,18 +5,27 @@
     <link rel="icon" type="image/svg+xml" href="./2048_logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2048</title>
-    <script type="module" crossorigin src="./assets/game-L3CuEd3P.js"></script>
+    <script type="module" crossorigin src="./assets/game-Bpfa-RM8.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-B5Qt9EMX.js">
-    <link rel="stylesheet" crossorigin href="./assets/game-COurrZOu.css">
+    <link rel="stylesheet" crossorigin href="./assets/game-D2TUEwrB.css">
   </head>
   <body>
     <div class="game">
-      <nav>
+      <nav class="nav">
         <a href="./index.html"
           ><input type="button" class="nav__button" value="Main menu"
         /></a>
+        <input
+          type="button"
+          class="nav__button nav__button--party"
+          value="Party mode"
+        />
+        <div class="nav__instructions">
+          <p>Use arrow keys/WASD to move</p>
+          <p>Press score to change colour theme</p>
+        </div>
       </nav>
-      <div class="gameBoard">
+      <div class="gameBoard gameBoard--active">
         <div class="numSquare" value="" id="1"></div>
         <div class="numSquare" value="" id="2"></div>
         <div class="numSquare" value="" id="3"></div>
@@ -34,6 +43,9 @@
         <div class="numSquare" value="" id="15"></div>
         <div class="numSquare" value="" id="16"></div>
       </div>
+      <div class="lose-screen">
+        <img src="./assets/gameover-BXaPoALo.gif" alt="game over animation" />
+      </div>
       <div class="scoreBoard">
         <h1 class="scoreBoard__scoreBox"></h1>
         <input
@@ -43,27 +55,43 @@
         />
       </div>
       <div class="controller">
-        <input
-          type="button"
-          class="controller__direction-button controller__direction-button--up"
-          value="Up"
-        />
-        <input
-          type="button"
-          class="controller__direction-button controller__direction-button--left"
-          value="Left"
-        />
-        <input
-          type="button"
-          class="controller__direction-button controller__direction-button--right"
-          value="Right"
-        />
-        <input
-          type="button"
-          class="controller__direction-button controller__direction-button--down"
-          value="Down"
-        />
+        <div
+          class="controller__controller-part controller__controller-part--top"
+        >
+          <input
+            type="button"
+            class="controller__direction-button controller__direction-button--up"
+            value="Up"
+          />
+        </div>
+        <div class="controller__controller-part">
+          <input
+            type="button"
+            class="controller__direction-button controller__direction-button--left"
+            value="Left"
+          />
+          <input
+            type="button"
+            class="controller__direction-button controller__direction-button--right"
+            value="Right"
+          />
+        </div>
+        <div
+          class="controller__controller-part controller__controller-part--bottom"
+        >
+          <input
+            type="button"
+            class="controller__direction-button controller__direction-button--down"
+            value="Down"
+          />
+        </div>
       </div>
     </div>
+    <audio loop controls class="party-music party-music--active">
+      <source
+        src="https://upload.wikimedia.org/wikipedia/commons/1/10/No-Copyright-Music_-Modern-Technology-_Background-Trance-Music_-by-MokkaMusic-Robot.ogg"
+        type="audio/ogg"
+      />
+    </audio>
   </body>
 </html>
