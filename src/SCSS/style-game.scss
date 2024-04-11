@@ -28,10 +28,11 @@ body {
     .nav__button {
       padding: 10px;
       border-radius: 10px;
-      font-size: min(2.5vh, 5vw);
+      font-size: min(2.8vh, 5vw);
       background-color: $game-nav-button;
       color: rgb(0, 0, 0);
       height: 70%;
+      color: $button-font;
 
       &:hover {
         background-color: darken($game-nav-button, 10%);
@@ -42,7 +43,7 @@ body {
   .gameBoard {
     height: 40vh;
     width: 40vh;
-    background-color: $main-game-background;
+    background-color: $gameBoard-background;
     display: none;
     border: 3px solid $gameBoard-border;
 
@@ -66,40 +67,40 @@ body {
       font-size: 1.8vh;
 
       &--4 {
-        background-color: darken(antiquewhite, 8%);
+        background-color: darken($numSquare-background, 8%);
       }
       &--8 {
-        background-color: darken(antiquewhite, 12%);
+        background-color: darken($numSquare-background, 12%);
       }
       &--16 {
-        background-color: darken(antiquewhite, 16%);
+        background-color: darken($numSquare-background, 16%);
       }
       &--32 {
-        background-color: darken(antiquewhite, 20%);
+        background-color: darken($numSquare-background, 20%);
       }
       &--64 {
-        background-color: darken(antiquewhite, 24%);
+        background-color: darken($numSquare-background, 24%);
       }
       &--128 {
-        background-color: darken(antiquewhite, 28%);
+        background-color: darken($numSquare-background, 28%);
       }
       &--256 {
-        background-color: darken(antiquewhite, 32%);
+        background-color: darken($numSquare-background, 32%);
       }
       &--512 {
-        background-color: darken(antiquewhite, 36%);
+        background-color: darken($numSquare-background, 36%);
       }
       &--1024 {
-        background-color: darken(antiquewhite, 40%);
+        background-color: darken($numSquare-background, 40%);
       }
       &--2048 {
-        background-color: darken(antiquewhite, 44%);
+        background-color: darken($numSquare-background, 44%);
       }
       &--4096 {
-        background-color: darken(antiquewhite, 48%);
+        background-color: darken($numSquare-background, 48%);
       }
       &--8192 {
-        background-color: darken(antiquewhite, 52%);
+        background-color: darken($numSquare-background, 52%);
       }
     }
   }
@@ -133,15 +134,14 @@ body {
     .scoreBoard__scoreBox {
       width: 60%;
       height: min(50px, 7vh);
-      background-color: $scorebox-background;
-      font-size: min(4vh, 6vw);
+      background-color: $game-scorebox-background;
+      font-size: min(5vh, 7vw);
       display: flex;
       flex-direction: row;
       justify-content: space-around;
       align-items: center;
       border-radius: 10px;
-      color: white;
-      background-color: $game-scorebox-background;
+      color: $game-scorebox-font;
     }
 
     .scoreBoard__restart-button {
@@ -149,7 +149,8 @@ body {
       padding: 10px;
       background-color: $game-nav-button;
       border-radius: 10px;
-      font-size: min(2.5vh, 5vw);
+      font-size: min(2.8vh, 5vw);
+      color: $button-font;
 
       &:hover {
         background-color: darken($game-nav-button, 10%);
@@ -158,8 +159,8 @@ body {
   }
   .controller {
     height: 35vh;
-    width: 100%;
-    background-color: $main-game-background;
+    width: 70%;
+    background-color: $direction-container-background;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -188,7 +189,7 @@ body {
         background-color: $direction-button-color;
         border-radius: 50%;
         font-size: 3.5vh;
-        color: white;
+        color: $button-font;
         margin: 0px 7vw;
 
         &:hover {

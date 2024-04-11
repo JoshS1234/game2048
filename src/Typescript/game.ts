@@ -257,18 +257,18 @@ const addNewRandomSquare = (gameBoard: any[]) => {
 };
 
 const startGame = () => {
-  const gameBoard = [
-    ["", "", "", ""],
-    ["", "", "", ""],
-    ["", "", "", ""],
-    ["", "", "", ""],
-  ];
   // const gameBoard = [
-  //   ["1024", "1024", "32", ""],
-  //   ["2", "4", "2", "8"],
-  //   ["512", "256", "32", "4"],
-  //   ["8", "2", "512", ""],
+  //   ["", "", "", ""],
+  //   ["", "", "", ""],
+  //   ["", "", "", ""],
+  //   ["", "", "", ""],
   // ];
+  const gameBoard = [
+    ["1024", "1024", "32", ""],
+    ["2", "4", "2", "8"],
+    ["512", "256", "32", "4"],
+    ["8", "2", "512", ""],
+  ];
   addNewRandomSquare(gameBoard);
   addNewRandomSquare(gameBoard);
   gameBoardContainerHTML.classList.add("gameBoard--active");
