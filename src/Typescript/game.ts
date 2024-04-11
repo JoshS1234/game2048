@@ -270,22 +270,7 @@ const isBoardFull = (gameBoard: any[]) => {
 
 //checks if the game has ended
 const checkLose = (gameBoard: any[]) => {
-  // const afterLeftMove = slideAndCrunchAllSquaresLeft(gameBoard);
-  // const afterRightMove = slideAndCrunchAllSquaresRight(gameBoard);
-  // const afterUpMove = slideAndCrunchAllSquaresUp(gameBoard);
-  // const afterDownMove = slideAndCrunchAllSquaresDown(gameBoard);
-
-  // if (JSON.stringify(afterLeftMove) == JSON.stringify(gameBoard)) {
-  //   if (JSON.stringify(afterRightMove) == JSON.stringify(gameBoard)) {
-  //     if (JSON.stringify(afterUpMove) == JSON.stringify(gameBoard)) {
-  //       if (JSON.stringify(afterDownMove) == JSON.stringify(gameBoard)) {
-  //         console.log("can't move any direction");
-  //         return true;
-  //       }
-  //     }
-  //   }
-  // }
-  // return false;
+  //game ends when user cannot move any direction
   if (
     !canMoveDirection(gameBoard, "left") &&
     !canMoveDirection(gameBoard, "right") &&

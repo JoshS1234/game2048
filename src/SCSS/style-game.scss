@@ -155,7 +155,7 @@ body {
       width: 60%;
       height: min(50px, 7vh);
       background-color: $game-scorebox-background;
-      font-size: min(5vh, 7vw);
+      font-size: min(3.5vh, 5.5vw);
       display: flex;
       flex-direction: row;
       justify-content: space-around;
@@ -169,7 +169,7 @@ body {
       padding: 10px;
       background-color: $game-nav-button;
       border-radius: 10px;
-      font-size: min(2.8vh, 5vw);
+      font-size: min(2.8vh, 3.5vw);
       color: $button-font;
 
       &:hover {
@@ -204,13 +204,15 @@ body {
       }
 
       .controller__direction-button {
+        min-height: calc(35vh / 3);
         height: calc(35vh / 3);
         width: calc(35vh / 3);
+        min-width: calc(35vh / 3);
         background-color: $direction-button-color;
         border-radius: 50%;
         font-size: 3.5vh;
         color: $button-font;
-        margin: 0px 7vw;
+        margin: 0px 9vw;
 
         &:hover {
           background-color: lighten($direction-button-color, 10%);
