@@ -1,11 +1,10 @@
 import "../SCSS/style-game.scss";
 import confetti from "canvas-confetti";
-///////////////////HTML inputs////////////////////////////
+///////////////////HTML document elements////////////////////////////
 let gameBoardContainerHTML = document.querySelector(".gameBoard");
 let gameBoardHTML = document.querySelectorAll(".numSquare");
 const scoreBox = document.querySelector(".scoreBoard__scoreBox");
 const loseScreen = document.querySelector(".lose-screen");
-
 const restartButton = document.querySelector(
   ".scoreBoard__restart-button"
 ) as HTMLInputElement;
@@ -53,7 +52,9 @@ if (!gameBoardHTML) {
   throw new Error("party music issue");
 }
 
-////////////////////////GAME LOGIC///////////////////////////////////
+///////////////////////////GAME LOGIC//////////////////////////////////////
+
+////////////////////////Tile movement mechanics///////////////////////////////////
 
 export const slideSquaresLeft = (gameBoardSection: any) => {
   let newArr = [];
@@ -235,6 +236,69 @@ export const slideAndCrunchAllSquaresDown = (gameBoard: any) => {
   );
   return newGameboard;
 };
+////////////////////////////////Game checks//////////////////////////////////////
+
+//checks if the user can move anywhere, needed to determine if the game has ended
+const canMoveDirection = (gameBoard: any[], direction: string) => {
+  if (direction == "left") {
+    const afterLeftMove = slideAndCrunchAllSquaresLeft(gameBoard);
+    return !(JSON.stringify(afterLeftMove) == JSON.stringify(gameBoard));
+  } else if (direction == "right") {
+    const afterRightMove = slideAndCrunchAllSquaresRight(gameBoard);
+    return !(JSON.stringify(afterRightMove) == JSON.stringify(gameBoard));
+  } else if (direction == "up") {
+    const afterUpMove = slideAndCrunchAllSquaresUp(gameBoard);
+    return !(JSON.stringify(afterUpMove) == JSON.stringify(gameBoard));
+  } else if (direction == "down") {
+    const afterDownMove = slideAndCrunchAllSquaresDown(gameBoard);
+    return !(JSON.stringify(afterDownMove) == JSON.stringify(gameBoard));
+  }
+};
+
+//checks if board is full, needed to see if the game is ended
+const isBoardFull = (gameBoard: any[]) => {
+  let fullCounter: number = 0;
+  for (let i: number = 0; i < gameBoard.length; i++) {
+    for (let j: number = 0; j < gameBoard[i].length; j++) {
+      if (gameBoard[i][j] != "") {
+        fullCounter++;
+      }
+    }
+  }
+  return fullCounter == 16;
+};
+
+//checks if the game has ended
+const checkLose = (gameBoard: any[]) => {
+  // const afterLeftMove = slideAndCrunchAllSquaresLeft(gameBoard);
+  // const afterRightMove = slideAndCrunchAllSquaresRight(gameBoard);
+  // const afterUpMove = slideAndCrunchAllSquaresUp(gameBoard);
+  // const afterDownMove = slideAndCrunchAllSquaresDown(gameBoard);
+
+  // if (JSON.stringify(afterLeftMove) == JSON.stringify(gameBoard)) {
+  //   if (JSON.stringify(afterRightMove) == JSON.stringify(gameBoard)) {
+  //     if (JSON.stringify(afterUpMove) == JSON.stringify(gameBoard)) {
+  //       if (JSON.stringify(afterDownMove) == JSON.stringify(gameBoard)) {
+  //         console.log("can't move any direction");
+  //         return true;
+  //       }
+  //     }
+  //   }
+  // }
+  // return false;
+  if (
+    !canMoveDirection(gameBoard, "left") &&
+    !canMoveDirection(gameBoard, "right") &&
+    !canMoveDirection(gameBoard, "up") &&
+    !canMoveDirection(gameBoard, "down")
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+/////   Game controllers ////////////////////
 
 const calculateScore = (gameBoard: any[]) => {
   let total: number = 0;
@@ -290,55 +354,7 @@ const startGame = () => {
   return gameBoard;
 };
 
-const canMoveDirection = (gameBoard: any[], direction: string) => {
-  if (direction == "left") {
-    const afterLeftMove = slideAndCrunchAllSquaresLeft(gameBoard);
-    return !(JSON.stringify(afterLeftMove) == JSON.stringify(gameBoard));
-  } else if (direction == "right") {
-    const afterRightMove = slideAndCrunchAllSquaresRight(gameBoard);
-    return !(JSON.stringify(afterRightMove) == JSON.stringify(gameBoard));
-  } else if (direction == "up") {
-    const afterUpMove = slideAndCrunchAllSquaresUp(gameBoard);
-    return !(JSON.stringify(afterUpMove) == JSON.stringify(gameBoard));
-  } else if (direction == "down") {
-    const afterDownMove = slideAndCrunchAllSquaresDown(gameBoard);
-    return !(JSON.stringify(afterDownMove) == JSON.stringify(gameBoard));
-  }
-};
-
-const checkLose = (gameBoard: any[]) => {
-  const afterLeftMove = slideAndCrunchAllSquaresLeft(gameBoard);
-  const afterRightMove = slideAndCrunchAllSquaresRight(gameBoard);
-  const afterUpMove = slideAndCrunchAllSquaresUp(gameBoard);
-  const afterDownMove = slideAndCrunchAllSquaresDown(gameBoard);
-
-  if (JSON.stringify(afterLeftMove) == JSON.stringify(gameBoard)) {
-    if (JSON.stringify(afterRightMove) == JSON.stringify(gameBoard)) {
-      if (JSON.stringify(afterUpMove) == JSON.stringify(gameBoard)) {
-        if (JSON.stringify(afterDownMove) == JSON.stringify(gameBoard)) {
-          console.log("can't move any direction");
-          return true;
-        }
-      }
-    }
-  }
-  return false;
-};
-
-const isBoardFull = (gameBoard: any[]) => {
-  let fullCounter: number = 0;
-  for (let i: number = 0; i < gameBoard.length; i++) {
-    for (let j: number = 0; j < gameBoard[i].length; j++) {
-      if (gameBoard[i][j] != "") {
-        fullCounter++;
-      }
-    }
-  }
-  return fullCounter == 16;
-};
-
-//////////////////////////HTML Handle functions//////////////////////////////////////
-
+//Takes in the array of arrays that represents the board, and then maps the values back to the HTML elements
 const displayBoard = (gameBoard: any) => {
   for (let index: number = 0; index < 16; index++) {
     let i = Math.floor(index / 4);
@@ -354,6 +370,8 @@ const displayBoard = (gameBoard: any) => {
     }
   }
 };
+
+//////////////////////////HTML Handle functions//////////////////////////////////////
 
 const handleUpdateScore = (gameBoard: any[]) => {
   const score = calculateScore(gameBoard);
@@ -376,6 +394,16 @@ const handleLose = () => {
   loseScreen.classList.add("lose-screen--active");
 };
 
+const handleRestart = () => {
+  gameBoard = startGame();
+  restartButton.value = "Restart";
+  hasWon = false;
+  winMove = true;
+  displayBoard(gameBoard);
+  handleUpdateScore(gameBoard);
+};
+
+//Direction handles, these respond to WASD, Arrow keys, and also the on-screen buttons
 const handleLeftClick = () => {
   if (canMoveDirection(gameBoard, "left")) {
     gameBoard = slideAndCrunchAllSquaresLeft(gameBoard);
@@ -439,19 +467,6 @@ const handleDownClick = () => {
     handleLose();
   }
 };
-const handleRestart = () => {
-  gameBoard = startGame();
-  restartButton.value = "Restart";
-  hasWon = false;
-  winMove = true;
-  displayBoard(gameBoard);
-  handleUpdateScore(gameBoard);
-};
-let currColor = 0;
-const handleChangeColour = () => {
-  body.style.filter = `hue-rotate(${(currColor + 45) % 360}deg)`;
-  currColor += 45;
-};
 
 // allow arrow keys
 const checkKey = (e: KeyboardEvent) => {
@@ -466,9 +481,21 @@ const checkKey = (e: KeyboardEvent) => {
   }
 };
 
+///////////////////////// Aesthetics functions //////////////////////////
+let currColor = 0;
+const handleChangeColour = () => {
+  body.style.filter = `hue-rotate(${(currColor + 45) % 360}deg)`;
+  currColor += 45;
+};
+
 let isParty: boolean = false;
 const handleParty = () => {
   if (!isParty) {
+    confetti({
+      particleCount: 300,
+      shapes: ["square", "circle", "star"],
+      spread: 360,
+    });
     document.querySelector(".game")?.classList.add("game--party");
     document.querySelector(".nav")?.classList.add("nav--party");
     document
@@ -491,6 +518,7 @@ const handleParty = () => {
   }
 };
 
+///////////////////EVENT LISTENERS///////////////////////////////
 leftButton.addEventListener("click", handleLeftClick);
 rightButton.addEventListener("click", handleRightClick);
 upButton.addEventListener("click", handleUpClick);
@@ -504,10 +532,9 @@ partyButton.addEventListener("click", handleParty);
 
 /////////////////////////////////////Game running//////////////////////////////////////
 
-//start game
+//Start game
 let gameBoard = startGame();
 let hasWon = false;
 let winMove = true;
-
 displayBoard(gameBoard);
 handleUpdateScore(gameBoard);
