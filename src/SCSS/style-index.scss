@@ -40,10 +40,21 @@ body {
       border-radius: 10px;
       background-color: $game-nav-button;
       color: $main-font-color;
+      transition: none;
+      box-shadow: 8px 8px 6px rgba(0, 0, 0, 0.1);
 
       &:hover {
+        transition: all 0.3s ease-in-out allow-discrete;
         background-color: darken($game-nav-button, 10%);
       }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .main-menu {
+    a {
+      width: 35%;
     }
   }
 }

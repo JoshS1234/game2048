@@ -44,12 +44,15 @@ body {
       color: rgb(0, 0, 0);
       height: 70%;
       color: $button-font;
+      transition: none;
 
       &--party {
         display: none;
       }
 
       &:hover {
+        transition: all 0.3s ease-in-out allow-discrete;
+
         background-color: darken($game-nav-button, 10%);
       }
     }
@@ -162,6 +165,13 @@ body {
       align-items: center;
       border-radius: 10px;
       color: $main-font-color;
+      transition: none;
+
+      &:hover {
+        filter: hue-rotate(720deg);
+        transition: all 4s ease-out allow-discrete;
+        background-color: darken($game-scorebox-background, 10%);
+      }
     }
 
     .scoreBoard__restart-button {
@@ -171,8 +181,9 @@ body {
       border-radius: 10px;
       font-size: min(2.8vh, 3.5vw);
       color: $button-font;
-
+      transition: none;
       &:hover {
+        transition: all 0.3s ease-in-out allow-discrete;
         background-color: darken($game-nav-button, 10%);
       }
     }
@@ -238,6 +249,13 @@ body {
     &--party {
       background-image: url("../../images/backgroundGameGif.gif");
       filter: sepia(50%);
+      transition: none;
+
+      &:hover {
+        background-color: darken($game-nav-button, 10%);
+        transition: all 3s ease-in-out;
+        filter: hue-rotate(720deg);
+      }
     }
 
     .nav {
@@ -251,6 +269,12 @@ body {
       .nav__button {
         &--party {
           display: flex;
+
+          &:hover {
+            filter: hue-rotate(7200deg);
+            transition: all 10s ease-in-out allow-discrete;
+            background-color: darken($game-scorebox-background, 10%);
+          }
         }
       }
 
