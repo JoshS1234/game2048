@@ -510,7 +510,7 @@ upButton.addEventListener("click", handleUpClick);
 downButton.addEventListener("click", handleDownClick);
 restartButton?.addEventListener("click", handleRestart);
 window.addEventListener("keydown", checkKey);
-scoreBoard?.addEventListener("click", handleChangeColour);
+scoreBox?.addEventListener("click", handleChangeColour);
 partyButton.addEventListener("click", handleParty);
 
 ///////////////////////////////////////////////////////////////////////////////////////
